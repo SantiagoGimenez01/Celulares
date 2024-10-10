@@ -1,9 +1,76 @@
-import example.pepita
+import example.*
 
-describe "group of tests for pepita" {
+describe "Grupo de test para celulares" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "Juliana y catalina tienen ambos celulares cargados al principio"{
+    assert.equals(5, juliana.celular().bateria())
+    assert.equals(5, catalina.celular().bateria())
+  }
+
+  test "Juliana llamo a catalina"{
+    juliana.realizarLlamada(10)
+    assert.equals(4.75, juliana.celular().bateria())
+  }
+
+  test "Catalina llamo a juliana"{
+    catalina.realizarLlamada(10)
+    assert.equals(4.9, catalina.celular().bateria())
+  }
+
+  test "Recargar celular"{
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.celular().recargar()
+    assert.equals(5, juliana.celular().bateria())
+
+  }
+
+  test "Juliana tiene el celular apagado"{
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    juliana.realizarLlamada(10)
+    assert.that(juliana.celular().estaApagado())
+  }
+
+  test "Catalina no tiene el celular apagado"{
+    catalina.realizarLlamada(10)
+    catalina.realizarLlamada(10)
+    catalina.realizarLlamada(10)
+    catalina.realizarLlamada(10)
+    assert.notThat(catalina.celular().estaApagado())
+  }
+
+  test "Juliana debera pagar $2750 luego de 3 llamadas de 5, 30 y 15 minutos"{
+    juliana.realizarLlamada(5)
+    juliana.realizarLlamada(30)
+    juliana.realizarLlamada(15)
+    assert.equals(2750, juliana.factura())
+  }
+
+  test "Catalina debera pagar $3600 luego de 3 llamadas de 20 minutos"{
+    catalina.realizarLlamada(20)
+    catalina.realizarLlamada(20)
+    catalina.realizarLlamada(20)
+    assert.equals(3600, catalina.factura())
   }
 
 }
+
